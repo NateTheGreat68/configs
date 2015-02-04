@@ -85,10 +85,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -CF'
-alias lla='ls -al'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -109,3 +108,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# more aliases
+alias screen_py='screen -c ~/.screenrc_py -S py'
