@@ -1,0 +1,4 @@
+startup_message off
+hardstatus alwayslastline
+hardstatus string '%{= kc}[%H]%{g}[%=%?%{w}%-Lw%?%{r}(%{W}%n*%t%{r})%?%{w}%+Lw%?%=%{g}]%{c}[%m/%d/%y %c]'
+vbell off
