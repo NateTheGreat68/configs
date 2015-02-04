@@ -4,4 +4,12 @@ screen -t vim1
 screen -t bash
 screen -t vim2
 screen -t py python3
+
+split -v
+select 0
+focus right
+split
 select 1
+focus down
+select 3
+focus left
