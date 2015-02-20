@@ -110,4 +110,4 @@ if ! shopt -oq posix; then
 fi
 
 # more aliases
-alias screen_py='screen -c ~/.screenrc_py -S py'
+alias screen-py='screen -c ~/.screenrc_py -S py'
