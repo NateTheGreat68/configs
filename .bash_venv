@@ -2,6 +2,6 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
 
-if [ -n ${VIRTUAL_ENV+x} ]; then
+if [ -n "${VIRTUAL_ENV+x}" ]; then
     source activate
 fi
