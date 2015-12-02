@@ -3,7 +3,7 @@ source ~/.screenrc
 screen -t vim1
 screen -t bash
 screen -t vim2
-screen -t py python3
+screen -t python
 
 split -v
 select 0
