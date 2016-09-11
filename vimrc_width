@@ -1,0 +1,3 @@
+" Highlight long lines
+highlight OverLength ctermbg=darkred ctermfg=white
+match OverLength /\%>72v.\+/
