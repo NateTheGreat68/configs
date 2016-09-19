@@ -1,0 +1,59 @@
+projects_dir="$HOME/projects"
+
+function proj {
+    # Is a project name supplied?
+    if [ "$#" -eq 0 ]; then
+        # No project name supplied.
+
+        # Is there a ~/.last_project file?
+        if [ -f "$HOME/.last_project" ]; then
+            # ~/.last_project exists.
+
+            # Use the contents of that file as the project name.
+            proj $(cat "$HOME/.last_project")
+            return $?
+        else
+            # No ~/.last_project file.
+
+            # Show usage and return.
+            echo "Usage: ${FUNCNAME[0]} [project_name]"
+            echo "  project_name can only be omitted if ~/.last_project"
+            echo "    is present and non-empty."
+            return 1
+        fi
+    fi
+
+    # Does the project folder exist?
+    if [ -d "$1" ]; then
+        # Folder is specified entirely.
+
+        project_dir="$1"
+    elif [ -d "$projects_dir/$1" ]; then
+        # Folder is in $projects_dir.
+
+        project_dir="$projects_dir/$1"
+    else
+        # Folder doesn't exist anywhere.
+
+        echo "Project not found."
+        return 2
+    fi
+
+    project_name=$(basename $project_dir)
+    echo "$project_name" > "$HOME/.last_project"
+    current_dir=$(pwd)
+
+    # Virtualenv?
+    workon "$project_name" 1> /dev/null 2> /dev/null
+
+    # Open tmux session.
+    if ! tmux attach-session -d -t "$project_name" 1> /dev/null 2> /dev/null; then
+        tmux new -s "$project_name"
+    fi
+
+    # Deactivate virtualenv?
+    deactivate 1> /dev/null 2> /dev/null
+
+    # Back to the previous directory.
+    cd "$current_dir"
+}
