@@ -28,15 +28,3 @@ function dj {
         "$manage" "$@"
     fi
 }
-
-### Automatically run workon if $VIRTUAL_ENV is set
-# See if $VIRTUAL_ENV is set
-if [ -n "$VIRTUAL_ENV" ]; then
-    # Get the name of the venv
-    venv_name=$(basename "$VIRTUAL_ENV")
-    # Check directory exists
-    if [ -d "$venv_name" ]; then
-        # Work on it
-        workon "$venv_name"
-    fi
-fi
