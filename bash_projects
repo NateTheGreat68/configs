@@ -49,11 +49,20 @@ function proj {
     cd "$project_dir"
 
     # Virtualenv?
-    workon "$project_name" 1> /dev/null 2> /dev/null
+    workon "$project_name" &> /dev/null
 
     # Attach or create tmux session.
-    if ! tmux attach-session -d -t "$project_name" 1> /dev/null 2> /dev/null; then
-        tmux new -s "$project_name"
+    if ! tmux attach -d -t "$project_name" &> /dev/null; then
+        tmux new -s "$project_name" &> /dev/null
+    fi
+
+    # Cleanup.
+
+    # Is the tmux session still active?
+    if tmux ls | grep "^$project_name" &> /dev/null; then
+        echo "tmux session '$project_name' detached"
+    else
+        echo "tmux session '$project_name' killed"
     fi
 
     # Deactivate virtualenv?
