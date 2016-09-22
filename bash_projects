@@ -1,6 +1,6 @@
 projects_dir="$HOME/projects"
 
-function proj {
+proj() {
     # Is a project name supplied?
     if [ "$#" -eq 0 ]; then
         # No project name supplied.

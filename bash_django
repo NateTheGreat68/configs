@@ -1,4 +1,4 @@
-function dj {
+dj() {
     # Return if $VIRTUAL_ENV is unset
     if [ -z "$VIRTUAL_ENV" ]; then
         echo "No VIRTUALENV active (\$VIRTUAL_ENV not set)."
