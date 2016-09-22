@@ -11,3 +11,6 @@ imap <S-Tab> <C-d>
 nmap <Tab> >>
 vmap <Tab> >
 imap <Tab> <C-i>
+
+" Backspace stuff
+set backspace=start
