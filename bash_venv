@@ -10,9 +10,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 if [ -n "$VIRTUAL_ENV" ]; then
     # Get the name of the venv
     venv_name=$(basename "$VIRTUAL_ENV")
-    # Check directory exists
-    if [ -d "$venv_name" ]; then
-        # Work on it
-        workon "$venv_name"
-    fi
+    # Work on it
+    workon "$venv_name"
 fi
