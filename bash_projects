@@ -50,7 +50,7 @@ proj() {
 
     # Virtualenv?
     workon "$project_name" &> /dev/null
-
+    
     # Attach or create tmux session.
     if ! tmux attach -d -t "$project_name" &> /dev/null; then
         tmux new -s "$project_name" &> /dev/null
@@ -59,14 +59,14 @@ proj() {
     # Cleanup.
 
     # Is the tmux session still active?
-    if tmux ls | grep "^$project_name" &> /dev/null; then
+    if tmux ls 2> /dev/null | grep "^$project_name" &> /dev/null; then
         echo "tmux session '$project_name' detached"
     else
         echo "tmux session '$project_name' killed"
     fi
 
     # Deactivate virtualenv?
-    deactivate 1> /dev/null 2> /dev/null
+    deactivate &> /dev/null
 
     # Back to the previous directory.
     cd "$current_dir"
