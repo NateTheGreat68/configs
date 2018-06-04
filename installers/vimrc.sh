@@ -16,5 +16,5 @@ if [ ! -f "$HOME/.vimrc" ]; then
     cat "$DIR/vimrc" >> "$HOME/.vimrc"
 else
     # add vimrc lines if they aren't already there
-    grep -Fxq "$(tail -n 1 "$DIR/vimrc")" "$HOME/.vimrc" || cat "$DIR/vimrc" >> "$HOME/.vimrc"
+    grep -Fxq "$(tail -n 3 "$DIR/vimrc" | head -n 1)" "$HOME/.vimrc" || cat "$DIR/vimrc" >> "$HOME/.vimrc"
 fi
