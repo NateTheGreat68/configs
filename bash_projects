@@ -1,23 +1,24 @@
 projects_dir="$HOME/projects"
+last_project_file="$projects_dir/.last_project"
 
 proj() {
     # Is a project name supplied?
     if [ "$#" -eq 0 ]; then
         # No project name supplied.
 
-        # Is there a ~/.last_project file?
-        if [ -f "$HOME/.last_project" ]; then
-            # ~/.last_project exists.
+        # Is there a last_project file?
+        if [ -f "$last_project_file" ]; then
+            # last_project exists.
 
             # Use the contents of that file as the project name.
-            proj $(cat "$HOME/.last_project")
+            proj $(cat "$last_project_file")
             return $?
         else
-            # No ~/.last_project file.
+            # No last_project file.
 
             # Show usage and return.
             echo "Usage: ${FUNCNAME[0]} [project_name]"
-            echo "  project_name can only be omitted if ~/.last_project"
+            echo "  project_name can only be omitted if $last_project_file"
             echo "    is present and non-empty."
             echo
             echo "  Available projects:"
@@ -44,8 +45,8 @@ proj() {
 
     # Get the project name.
     project_name=$(basename $project_dir)
-    # Save the project path in ~/.last_project.
-    echo "$project_name" > "$HOME/.last_project"
+    # Save the project path in last_project.
+    echo "$project_name" > "$last_project_file"
     # Save the current directory for later.
     current_dir=$(pwd)
     # Change to the project directory.
