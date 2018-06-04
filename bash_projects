@@ -1,3 +1,5 @@
+echo "Loading bash_projects..."
+
 projects_dir="$HOME/projects"
 last_project_file="$projects_dir/.last_project"
 

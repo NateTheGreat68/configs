@@ -1,3 +1,5 @@
+echo "Loading bash_django..."
+
 dj() {
     # Return if $VIRTUAL_ENV is unset
     if [ -z "$VIRTUAL_ENV" ]; then

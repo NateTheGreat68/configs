@@ -1,3 +1,5 @@
+echo "Loading bash_venv..."
+
 ### Set up virtualenvwrapper
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export PROJECT_HOME=$HOME/projects
