@@ -1,0 +1,5 @@
+
+" load extra configs
+for f in split(glob('~/.configs/vim_*'), '\n')
+    exe 'source' f
+endfor

@@ -11,5 +11,10 @@ DIR="$(dirname "$(readlink -f "$0")")"
 # copy the files over
 cp -v "$DIR"/../bash_* "$HOME/.configs/"
 
-# add bashrc lines if they aren't already there
-grep -Fxq "$(tail -n 1 "$DIR/bashrc")" "$HOME/.bashrc" || cat "$DIR/bashrc" >> "$HOME/.bashrc"
+# check if .bashrc exists
+if [ ! -f "$HOME/.bashrc" ]; then
+    cat "$DIR/bashrc" >> "$HOME/.bashrc"
+else
+    # add bashrc lines if they aren't already there
+    grep -Fxq "$(tail -n 1 "$DIR/bashrc")" "$HOME/.bashrc" || cat "$DIR/bashrc" >> "$HOME/.bashrc"
+fi
