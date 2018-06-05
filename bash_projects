@@ -58,7 +58,7 @@ proj() {
     workon "$project_name" &> /dev/null
     
     # Attach or create tmux session.
-    if [ ! tmux attach -d -t "$project_name" &> /dev/null ]; then
+    if ! tmux attach -d -t "$project_name" &> /dev/null; then
         tmux new -s "$project_name" &> /dev/null
     fi
 
