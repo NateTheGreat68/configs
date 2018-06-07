@@ -4,14 +4,16 @@ echo "Loading bash_venv..."
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export PROJECT_HOME=$HOME/projects
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 ### Automatically run workon if $VIRTUAL_ENV is set
 # See if $VIRTUAL_ENV is set
 if [ -n "$VIRTUAL_ENV" ]; then
     # Get the name of the venv
     venv_name=$(basename "$VIRTUAL_ENV")
+    # Announce it
+    echo "Working on $venv_name..."
     # Work on it
     workon "$venv_name"
 fi
