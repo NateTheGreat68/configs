@@ -10,3 +10,4 @@ alias python="$(which python3)"
 
 # others
 alias c='cd ..'
+alias workoff='deactivate'
