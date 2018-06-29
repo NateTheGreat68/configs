@@ -14,3 +14,8 @@ imap <Tab> <C-i>
 
 " Backspace stuff
 set backspace=start
+
+" Set term properly for colors
+if &term == "screen"
+    set t_Co=256
+endif
