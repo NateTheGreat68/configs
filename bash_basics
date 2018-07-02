@@ -1,0 +1,4 @@
+echo "Loading bash_basics..."
+
+# Add home bin to path
+export PATH=$PATH:~/bin
