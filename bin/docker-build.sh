@@ -23,7 +23,7 @@ function docker-build {
     image_name=""
     tag=""
     declare -a more_tags
-    for argument in "${@:1}" ; do
+    for argument in "$@" ; do
         if [[ $argument =~ ^-[preE]+$ ]] ; then
             for (( i=1; i<${#argument}; i++ )) ; do
                 case ${argument:$i:1} in
@@ -87,7 +87,18 @@ function docker-build {
     # Run?
     if [ "$run_image" -eq 1 ] ; then
         echo "Running container..."
-        container_id=$(docker run -d ${image_name}:${tag})
+        # See if there's a script file at $HOME/.docker-build/<image_name>.sh
+        if [ -f "$HOME/.docker-build/${image_name}.sh" ] ; then
+            container_id=$( \
+                "$HOME/.docker-build/${image_name}.sh" \
+                "${image_name}:${tag}" \
+                )
+        else
+            container_id=$( \
+                docker run -d \
+                ${image_name}:${tag} \
+                )
+        fi
     fi
 
     # Exec?
@@ -110,4 +121,4 @@ function docker-build {
     fi
 }
 
-docker-build ${@:1}
+docker-build "$@"
