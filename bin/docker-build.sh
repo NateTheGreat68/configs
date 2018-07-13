@@ -5,7 +5,7 @@ set -e
 set -o pipefail
 
 function docker-build-print_usage {
-    echo "Usage: $1 [options] image_name tag [additional_tags]"
+    echo "Usage: $1 [options] image_name tag [additional_tags...]"
     echo "  options:"
     echo "    -r            Run image after building."
     echo "    -e            Exec image using /bin/bash."
