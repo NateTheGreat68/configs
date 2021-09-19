@@ -1,0 +1,4 @@
+" load from vimrc.d
+for f in split(glob('~/.vimrc.d/*.vimrc'), '\n')
+    exe 'source' f
+endfor

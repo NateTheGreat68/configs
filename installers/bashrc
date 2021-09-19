@@ -1,3 +1,0 @@
-
-# load extra configs
-for f in ~/.configs/bash_*; do . $f; done

@@ -1,7 +1,0 @@
-echo "Loading bash_basics..."
-
-# Add home bin to path
-export PATH=$PATH:~/bin
-
-# Use vi mode in bash
-set -o vi

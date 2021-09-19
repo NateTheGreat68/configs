@@ -1,3 +1,0 @@
-" Highlight row 81 and everything after 120 dark gray.
-highlight ColorColumn ctermbg=DarkGray guibg=#757575
-let &colorcolumn="81,".join(range(121,999),",")

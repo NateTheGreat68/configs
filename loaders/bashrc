@@ -1,0 +1,4 @@
+# load from bashrc.d
+for f in ~/.bashrc.d/*.bashrc ; do
+	source "$f"
+done
