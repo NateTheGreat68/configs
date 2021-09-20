@@ -1,2 +1,2 @@
 # load from inputrc.d
-$include ~/.inputrc.d/*.inputrc
+$include ~/.inputrc.d/50-vi-mode-symbols.inputrc
