@@ -11,11 +11,11 @@ project(){
 
 	[[ $# -ne 1 ]] && project_usage
 
-	if (tmux ls | egrep "^$1:") &> /dev/null ; then
-		tmux detach-session -s "$1" &> /dev/null
-		tmux attach-session -t "$1"
+	tmux new-session -ADds "$1" -c "$PROJECT_HOME/$1"
+	if [[ $TMUX ]]; then
+		tmux switch-client -t "$1"
 	else
-		tmux new-session -s "$1" -c "$PROJECT_HOME/$1"
+		tmux attach-session -t "$1"
 	fi
 }
 export project
