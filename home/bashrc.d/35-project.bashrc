@@ -4,12 +4,10 @@ project(){
 	_project_usage(){
 		printf \
 'usage: %s <project_name>
-' $(basename ${FUNCNAME[0]})
-
-		return 1
+' $1
 	}
 
-	[[ $# -ne 1 ]] && project_usage
+	[[ $# -ne 1 ]] && _project_usage "${FUNCNAME[0]}" && return 1
 
 	tmux new-session -ADds "$1" -c "$PROJECT_HOME/$1"
 	if [[ $TMUX ]]; then
