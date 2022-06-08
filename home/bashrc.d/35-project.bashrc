@@ -9,7 +9,7 @@ project(){
 
 	[[ $# -ne 1 ]] && _project_usage "${FUNCNAME[0]}" && return 1
 
-	tmux new-session -ADds "$1" -c "$PROJECT_HOME/$1"
+	tmux new-session -ds "$1" -c "$PROJECT_HOME/$1" 2> /dev/null
 	if [[ $TMUX ]]; then
 		tmux switch-client -t "$1"
 	else
