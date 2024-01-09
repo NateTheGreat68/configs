@@ -3,17 +3,30 @@
 project(){
 	_project_usage(){
 		printf \
-'usage: %s <project_name>
+'usage: %s (<project_name>|-g <git_repo>)
 ' $1
 	}
 
-	[[ $# -ne 1 ]] && _project_usage "${FUNCNAME[0]}" && return 1
+	[[ $# -lt 1 ]] && _project_usage "${FUNCNAME[0]}" && return 1
 
-	tmux new-session -ds "$1" -c "$PROJECT_HOME/$1" 2> /dev/null
-	if [[ $TMUX ]]; then
-		tmux switch-client -t "$1"
+	if [[ "$1" = "-g" ]]; then
+		if [[ -f "$2" ]]; then
+			# Cloning from a bundle
+			proj_name=$(echo "$2" | sed -e 's|/*\.bundle$||' -e 's|.*/||g')
+		else
+			proj_name=$(echo "$2" |
+				sed -e 's|/$||' -e 's|:*/*\.git$||' -e 's|.*[/:]||g')
+		fi
+		git clone "$2" "$PROJECT_HOME/$proj_name"
 	else
-		tmux attach-session -t "$1"
+		proj_name=$1
+	fi
+
+	tmux new-session -ds "$proj_name" -c "$PROJECT_HOME/$proj_name" 2> /dev/null
+	if [[ -n $TMUX ]]; then
+		tmux switch-client -t "$proj_name"
+	else
+		tmux attach-session -t "$proj_name"
 	fi
 }
 export project
