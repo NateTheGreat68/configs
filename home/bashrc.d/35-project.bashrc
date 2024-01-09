@@ -33,9 +33,8 @@ export project
 
 _project_completion(){
 	_project_dirs(){
-		for filename in $(ls $PROJECT_HOME); do
-			[[ -d "$PROJECT_HOME/$filename" ]] && echo $filename
-		done
+		# Follow symlinks, only find directories, don't include hidden basenames
+		find -L "$PROJECT_HOME" -maxdepth 1 -type d ! -name '.*' -printf '%f\n'
 	}
 
 	COMPREPLY=($(compgen -W "$(_project_dirs)" "${COMP_WORDS[COMP_CWORD]}"))
