@@ -1,0 +1,7 @@
+# Required:
+# Argument 1: The ssh host (user@hostname, user@ip, config_name, etc.)
+# Argument 2: The path to $PROJECT_HOME on the host machine
+# Argument 3: The project name
+
+ssh "$1" -t "$2/.projectscripts/.project.sh" "$3"
+return 1

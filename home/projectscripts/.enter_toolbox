@@ -1,0 +1,13 @@
+# Required:
+# Argument 1: The desired toolbox name
+# Argument 2: The project name
+
+if [ -f "/run/.containerenv" ]; then
+	tb=$(awk -F'"' '$1 == "name=" { print $2 }' /run/.containerenv)
+	if [ "$tb" = "$1" ]; then
+		return 0
+	fi
+fi
+
+toolbox run -c "$1" "$PROJECT_HOME/.projectscripts/.project.sh" "$2"
+return 1

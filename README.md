@@ -19,4 +19,3 @@ Don't forget to install python3's virtualenv and virtualenvwrapper packages. In 
 # apt update
 # apt install python3-pip python3-virtualenv python3-virtualenvwrapper
 ```
-Make a projects directory in your home (`$ mkdir ~/projects`) and you should be good to go!
