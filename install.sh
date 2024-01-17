@@ -30,7 +30,7 @@ install_bash() {
 	# Add the project scripts.
 	source ~/.bashrc.d/35-project.bashrc
 	mkdir -p "$PROJECT_HOME"
-	cp -r --backup=numbered home/projectscripts/. \
+	cp -r home/projectscripts/. \
 		"$PROJECT_HOME/.projectscripts"
 }
 
