@@ -1,2 +1,5 @@
 # Uncomment the below line to enter toolbox "projects".
 #. "$PROJECT_HOME/.projectscripts/.enter_toolbox" projects $1
+
+# Uncomment the below line to ssh to a machine called "dev_machine"
+#. "$PROJECT_HOME/.projectscripts/.enter_ssh" dev_machine projects $1
