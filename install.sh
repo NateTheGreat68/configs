@@ -21,8 +21,11 @@ install_bash() {
 	mkdir -p ~/.bashrc.d
 	cp home/bashrc.d/* ~/.bashrc.d/
 
-	# Add the liens to bashrc that will include the bashrc.d files.
+	# Add the lines to bashrc that will include the bashrc.d files.
 	conditional_append loaders/bashrc ~/.bashrc
+
+	# Make it effective immediately.
+	source ~/.bashrc
 }
 
 install_vim() {
