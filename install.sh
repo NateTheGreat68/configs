@@ -25,7 +25,13 @@ install_bash() {
 	conditional_append loaders/bashrc ~/.bashrc
 
 	# Make it effective immediately.
-	source ~/.bashrc
+	echo 'Don'"'"'t forget to source ~/.bashrc'
+
+	# Add the project scripts.
+	source ~/.bashrc.d/35-project.bashrc
+	mkdir -p "$PROJECT_HOME"
+	cp -r --backup=numbered home/projectscripts/. \
+		"$PROJECT_HOME/.projectscripts"
 }
 
 install_vim() {

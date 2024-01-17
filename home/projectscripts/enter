@@ -1,0 +1,2 @@
+# Uncomment the below line to enter toolbox "projects".
+#. "$PROJECT_HOME/.projectscripts/.enter_toolbox" projects $1

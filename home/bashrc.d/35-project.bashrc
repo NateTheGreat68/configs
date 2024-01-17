@@ -22,11 +22,29 @@ project(){
 		proj_name=$1
 	fi
 
+	# Execute global and project-specific enter scripts.
+	# If either returns non-zero, don't continue the script.
+	# This is used to run a toolbox, ssh into another machine, etc.
+	if [ -f "$PROJECT_HOME/.projectscripts/enter" ]; then
+		. "$PROJECT_HOME/.projectscripts/enter" "$proj_name" || return 0
+	fi
+	if [ -f "$PROJECT_HOME/.projectscripts/$proj_name.enter" ]; then
+		. "$PROJECT_HOME/.projectscripts/$proj_name.enter" "$proj_name" || return 0
+	fi
+
 	tmux new-session -ds "$proj_name" -c "$PROJECT_HOME/$proj_name" 2> /dev/null
 	if [[ -n $TMUX ]]; then
 		tmux switch-client -t "$proj_name"
 	else
 		tmux attach-session -t "$proj_name"
+	fi
+
+	# Execute global and project-specific exit scripts.
+	if [ -f "$PROJECT_HOME/.projectscripts/exit" ]; then
+		. "$PROJECT_HOME/.projectscripts/exit" "$proj_name"
+	fi
+	if [ -f "$PROJECT_HOME/.projectscripts/$proj_name.exit" ]; then
+		. "$PROJECT_HOME/.projectscripts/$proj_name.exit" "$proj_name"
 	fi
 }
 export project
