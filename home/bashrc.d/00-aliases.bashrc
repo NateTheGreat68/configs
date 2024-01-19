@@ -4,4 +4,4 @@ alias l='ls -CF'
 
 alias diff='diff --color -u'
 
-alias untoolbox='ssh localhost'
+alias untoolbox='ssh localhost; exit'
