@@ -4,4 +4,6 @@ alias l='ls -CF'
 
 alias diff='diff --color -u'
 
-alias untoolbox='ssh localhost; exit'
+if [ -f /run/.containerenv ]; then
+	alias untoolbox='ssh localhost; exit'
+fi
