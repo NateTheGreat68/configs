@@ -1,5 +1,6 @@
-alias ll='ls -Alh'
+alias ll='ls -lh'
 alias la='ls -A'
+alias lal='ls -Alh'
 alias l='ls -CF'
 
 alias diff='diff --color -u'
