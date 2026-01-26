@@ -4,4 +4,4 @@
 # Argument 3: The project name
 
 ssh "$1" -t "$2/.projectscripts/.project.sh" "$3"
-return 1
+return 4

@@ -2,12 +2,21 @@
 # Argument 1: The desired toolbox name
 # Argument 2: The project name
 
-if [ -f "/run/.containerenv" ]; then
-	tb=$(awk -F'"' '$1 == "name=" { print $2 }' /run/.containerenv)
-	if [ "$tb" = "$1" ]; then
+TOOLBOX_NAME="$1"
+PROJECT_NAME="$2"
+
+if [[ -f /run/.toolboxenv ]]; then
+	if [[ "$(sed -nE 's/name="(.*)"$/\1/p' /run/.containerenv)" != "$TOOLBOX_NAME" ]]; then
+		# We're in the wrong toolbox.
+		toolbox run -c "$TOOLBOX_NAME" "$PROJECT_HOME/.projectscripts/.project.sh" "$PROJECT_NAME"
+		return 4
+	else
+		# We're in the right toolbox.
 		return 0
 	fi
+else
+	# We aren't in a toolbox.
+	toolbox run -c "$TOOLBOX_NAME" "$PROJECT_HOME/.projectscripts/.project.sh" "$PROJECT_NAME"
+	return 4
 fi
-
-toolbox run -c "$1" "$PROJECT_HOME/.projectscripts/.project.sh" "$2"
 return 1
