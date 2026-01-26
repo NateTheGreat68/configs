@@ -1,0 +1,4 @@
+if [[ -f /run/.toolboxenv ]]; then
+	exit
+fi
+return 0
